@@ -1,33 +1,46 @@
 import React from 'react'
 import './App.css'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import './Media.css'
+import {HashRouter, Routes, Route} from 'react-router-dom'
 import LogIn from './Components/Auth/LogIn'
 import SignUp from './Components/Auth/SignUp'
-import LandingPage from './Components/LandingPage/LandingPage'
-import ForgetPassword from './Components/RetAuth/ForgetPassword'
-import NewPassword from './Components/RetAuth/NewPassword'
+import LogOut from './Components/LogOut/LogOut'
+import MainPage from './Components/LandingPage/MainPage'
 import HomePage from './Components/HomePage/HomePage'
 import About from './Components/About/About'
-import NotFound from './Components/NotFound/NotFound'
+import NewPassword from './Components/NewPassword/NewPassword'
 import EmailVerification from './Components/EmailLink/EmailVerification'
+import CheckPassword from './Components/NewPassword/CheckPassword'
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
+import ChangePassword from './Components/ChangePassword/ChangePassword'
+import Checkout from './Components/Checkout/Checkout'
+import Upload from './Components/CreateEvent/Upload'
+import SavedTickets from './Components/SavedTickets/SavedTickets'
+import Category from './Components/LandingPage/category'
 
 function App() {
   return (
     <>
-      <Router>
+      <HashRouter>
           <Routes>
               <Route path ='/login' element = {<LogIn />} />
               <Route path ='/signup' element = {<SignUp />} />
-              <Route path ='/' element = {<LandingPage />} />
+              <Route path ="/api/logout/:id" element = {<LogOut />} />
+              <Route path ="/category" element = {<Category />} />
+              <Route path ='/' element = {<MainPage />} />
               <Route path ='/homepage' element = {<HomePage />} />
-              <Route path ='/landingpage' element = {<LandingPage />} />
+              <Route path ='/upload' element = {<Upload />} />
               <Route path ='/about' element = {<About />} />
-              <Route path ='/forgetpassword' element = {<ForgetPassword />} />
-              <Route path ='/newpassword' element = {<NewPassword />} />
-              <Route path ='/emailredirect/:id' element = {<EmailVerification />} />
-              <Route element = {<NotFound />} />
+              <Route path ='/forgotpassword' element = {<ForgotPassword />} />
+              <Route path ='/api/changepassword/:id/:token' element = {<NewPassword />} /> 
+              <Route path="/api/verify" element={<EmailVerification />} />
+              <Route path="/checkpassword" element={<CheckPassword />} />
+              <Route path="/saved" element={<SavedTickets />} />
+              <Route path="/events/:id" element={<Checkout />} />
+              <Route path="/api/changepasswordlogged/:id" element={<ChangePassword />} />
+              
           </Routes>
-      </Router>
+      </HashRouter>
     </>
   )
 }
