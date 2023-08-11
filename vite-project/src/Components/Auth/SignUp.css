@@ -164,7 +164,7 @@ h5{
 
 .password_Visibility_SignUp {
     position: absolute;
-    top: 53.9%;
+    top: 51.8%;
     left: 31.5%;
     font-size: 19px;
     cursor: pointer;
@@ -172,8 +172,16 @@ h5{
 
  .Cpassword_Visibility_SignUp {
     position: absolute;
-    top: 64.9%;
+    top: 62.5%;
     left: 31.5%;
     font-size: 19px;
     cursor: pointer;
  }
+
+ /* .dateOfBirth {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+ } */

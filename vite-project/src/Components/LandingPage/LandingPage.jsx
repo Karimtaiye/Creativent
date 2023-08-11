@@ -3,7 +3,11 @@ import './LandingPage.css'
 
 function LandingPage() {
   return (
-    <div>LandingPage</div>
+    <div className='LandingPage'>
+      <section className='landingPage_Header'>
+
+      </section>
+    </div>
   )
 }
 

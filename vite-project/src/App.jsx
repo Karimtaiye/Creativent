@@ -8,6 +8,8 @@ import ForgetPassword from './Components/RetAuth/ForgetPassword'
 import NewPassword from './Components/RetAuth/NewPassword'
 import HomePage from './Components/HomePage/HomePage'
 import About from './Components/About/About'
+import NotFound from './Components/NotFound/NotFound'
+import EmailVerification from './Components/EmailLink/EmailVerification'
 
 function App() {
   return (
@@ -18,9 +20,12 @@ function App() {
               <Route path ='/signup' element = {<SignUp />} />
               <Route path ='/' element = {<LandingPage />} />
               <Route path ='/homepage' element = {<HomePage />} />
+              <Route path ='/landingpage' element = {<LandingPage />} />
               <Route path ='/about' element = {<About />} />
               <Route path ='/forgetpassword' element = {<ForgetPassword />} />
               <Route path ='/newpassword' element = {<NewPassword />} />
+              <Route path ='/emailredirect/:id' element = {<EmailVerification />} />
+              <Route element = {<NotFound />} />
           </Routes>
       </Router>
     </>

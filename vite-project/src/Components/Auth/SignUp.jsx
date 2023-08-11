@@ -8,12 +8,13 @@ import { useNavigate } from 'react-router-dom'
     
 function SignUp() {
   const nav = useNavigate()
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setlastName] = useState("")
+  const [firstname, setFirstName] = useState("")
+  const [lastname, setlastName] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [email, setEmail] = useState("")
-  const [profileName, setProfileName] = useState("")
+  const [username, setusername] = useState("")
+  // const [DOB, setDOB] = useState("")
   const [errorMsg, setErrorMsg] = useState({error:false, msg:"", type:""})
   const [passwordShow, setPasswordShow] = useState(false)
   const [confirmPasswordShow, setConfimPasswordShow] = useState(false)
@@ -29,42 +30,38 @@ function SignUp() {
   const url = "https://creativents-on-boarding.onrender.com/api/signup"
   // axios.get(url)
   // .then((res)=>console.log(res))
-  // console.log({firstName, lastName, email, password,profileName, confirmPassword});
-  const userData = {firstName, lastName, password, email}
+  // console.log({firstName, lastName, email, password});
+  const userData = {firstname, lastname, password, email, username}
 
   const signUpUser = (e) => {
     e.preventDefault()
-    // if(!email){
-    //   setErrorMsg({error:true, type:"email", msg:"Please input your Email"})
-    // }
-    // else if(!firstName){
-    //   setErrorMsg({error:true, type:"firstname", msg:"Please input your First Name"})
-    // }
-    // else if(!lastName){
-    //   setErrorMsg({error:true, type:"lastname", msg:"Please input your Last Name"})
-    // }
-    // else if(!password){
-    //   setErrorMsg({error:true, type:"password", msg:"Please input your Password"})
-    // }
-    // else if(password !== confirmPassword){
-    //   setErrorMsg({error:true, type:"confirmpassword", msg:"password does not match"})
-    // }
-    // else if(!host){
-    //   setErrorMsg({error:true, type:"host", msg:"Please input your Host Username"})
-    // }
-
-    // else {
+    if(!email){
+      setErrorMsg({error:true, type:"email", msg:"Please input your Email"})
+    }
+    else if(!firstname){
+      setErrorMsg({error:true, type:"firstname", msg:"Please input your First Name"})
+    }
+    else if(!lastname){
+      setErrorMsg({error:true, type:"lastname", msg:"Please input your Last Name"})
+    }
+    else if(!password){
+      setErrorMsg({error:true, type:"password", msg:"Please input your Password"})
+    }
+    else if(password !== confirmPassword){
+      setErrorMsg({error:true, type:"confirmpassword", msg:"password does not match"})
+    }
+    else if(!username){
+      setErrorMsg({error:true, type:"host", msg:"Please input your Host Username"})
+    }
+    else {
       axios.post(url,userData)
         .then(res=> {
             console.log(res)
         })
         .catch((err)=>{
-            console.log(err.response.data.errors)
+            console.log(err)
         })
-    // }
-
-    
-
+    }
 
   }
 
@@ -88,14 +85,15 @@ function SignUp() {
               <div className='names'>
               <article>
               <label>FirstName</label>
-              <input type="text" className='UserName' style={{border: errorMsg.type === "firstname" && errorMsg.error?"1px solid rgb(255, 178, 29)":null}} value={firstName} onChange={(e)=>setFirstName(e.target.value)}/>
+              <input type="text" className='UserName' style={{border: errorMsg.type === "firstname" && errorMsg.error?"1px solid rgb(255, 178, 29)":null}} value={firstname} onChange={(e)=>setFirstName(e.target.value)}/>
               {
                 errorMsg.type === "firstname" ?<h5>{errorMsg.msg}</h5>: null
               }
               </article>
+              {/* <input className='dateOfBirth' type="date" value={DOB} onChange={(e)=>setDOB(e.target.value)}/> */}
               <article>
               <label>LastName</label>
-              <input type="text" className='UserName' style={{border: errorMsg.type === "lastname"?"1px solid rgb(255, 178, 29)":null}} value={lastName} onChange={(e)=>setlastName(e.target.value)}/>
+              <input type="text" className='UserName' style={{border: errorMsg.type === "lastname"?"1px solid rgb(255, 178, 29)":null}} value={lastname} onChange={(e)=>setlastName(e.target.value)}/>
               {
               errorMsg.type === "lastname"?<h5>{errorMsg.msg}</h5>: null
               }
@@ -123,7 +121,7 @@ function SignUp() {
                 host?
                 <>
                   <label className='SignUp_Labels'>Profile Name</label>
-                    <input type="text" className='signUpInputs' style={{border: errorMsg.type === "host"?"1px solid rgb(255, 178, 29)":null}} value={profileName} onChange={(e)=>setProfileName(e.target.value)}/>
+                    <input type="text" className='signUpInputs' style={{border: errorMsg.type === "host"?"1px solid rgb(255, 178, 29)":null}} value={username} onChange={(e)=>setusername(e.target.value)}/>
                     {
                 errorMsg.type === "host"?<h5>{errorMsg.msg}</h5>: null
                     }

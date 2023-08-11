@@ -11,12 +11,20 @@ function LogIn() {
   const [password, setPassword] = useState("")
   const [passwordShow, setPasswordShow] = useState(false)
 
-    // console.log({email, password})
+    const userLogInData ={email, password}
+    console.log(userLogInData);
 
-  const url = "https://creativents-on-boarding.onrender.com"
+  const url = "https://creativents-on-boarding.onrender.com/api/login"
+ const userLogIn = (e) => {
+  e.preventDefault()
+  axios.post(url, userLogInData)
+    .then(res=>{console.log(res)
+    nav('/landingpage')
+    })
+    .catch(err=>console.log(err))
+ }
   useEffect(()=>{
-    axios.get(url)
-    .then(res=>console.log(res))
+    
   },[])
 
   return (
@@ -42,7 +50,7 @@ function LogIn() {
                    }
                  <div className='auth_Action'>
                   <p onClick={()=>nav('/forgetpassword')}>Forgot password?</p>
-                  <button className='login_Btn'>Log in</button>
+                  <button className='login_Btn' onClick={userLogIn}>Log in</button>
                   <span>Don't have an account? <a onClick={()=>nav('/signup')}>sign up</a></span>
                  </div>
                </form>
